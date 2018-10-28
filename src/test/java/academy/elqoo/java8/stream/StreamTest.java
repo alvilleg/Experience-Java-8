@@ -237,7 +237,7 @@ public class StreamTest {
 
     @Test
     public void shouldBeEmptyStream(){
-        Stream<Integer> numberStream =null; //create empty stream
+        Stream<Integer> numberStream = Stream.empty(); //create empty stream
         assertNotNull(numberStream);
     }
 
@@ -256,7 +256,13 @@ public class StreamTest {
     @Test
     public void shouldCollectToString(){
         String sample = "Working with Java8 Streams";
+
+        //
+        System.out.println("2 XXXXXX ::: " + sample.chars());
+        System.out.println("3 XXXXXX ::: " + sample.chars().mapToObj(a->(char)a));
+
         String result = sample.chars().mapToObj(a -> ((char) a)).collect(new CharacterToStringCollector());
+        System.out.println("1 XXXXXX ::: " + result);
         assertThat(sample,equalTo(result));
     }
 }
