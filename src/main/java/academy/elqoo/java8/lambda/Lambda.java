@@ -1,9 +1,9 @@
 package academy.elqoo.java8.lambda;
 
 
+import java.util.Comparator;
 import java.util.List;
-import java.util.function.BinaryOperator;
-import java.util.function.Predicate;
+import java.util.function.*;
 import java.util.stream.Collectors;
 
 public class Lambda {
@@ -12,26 +12,25 @@ public class Lambda {
         return strings.stream().filter(condition).collect(Collectors.toList());
     }
 
-    public static void processWithinTransaction(/*Runnable runnable*/){
-        Transaction transaction = new Transaction();
-        transaction.start();
-        transaction.stop();
+    public static void processWithinTransaction(Runnable runnable){
+        runnable.run();
     }
 
-    public static String create(/* add functional interface to create something */){
-        return null;
+    public static String create(GenFnInterface<String> supplier){
+        return supplier.get();
     }
 
-    public static Integer getStringLength(String s /*place a function here*/){
-        return null;
+    public static Integer getStringLength(String s , StringFnInterface l) {
+        return l.apply(s);
     }
 
-    public static int multiply(int a, int b /* add a functional interface here */){
-        return 0;
+    public static int multiply(int a, int b, IntBinaryOperator oper){
+        return oper.applyAsInt(a, b);
     }
 
-    public static List<String> sortStrings(List<String> strings /* sorting can be done using a comparator */){
-         return null;
+    public static List<String> sortStrings(List<String> strings , Comparator<String> comparator){
+        strings.sort(comparator);
+        return strings;
     }
 
 }
